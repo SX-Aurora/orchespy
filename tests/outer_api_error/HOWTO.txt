@@ -1,0 +1,12 @@
+1. First, create a library that overrides the function by following the steps below.
+
+ $ sh override_build.sh
+
+2. Then run pytest as follows:
+
+ Case where VEO function fails 
+ $ LD_PRELOAD=./liboverride_veo_memcpy.so pytest outer_api_error.py
+
+ Case where CUDA function fails 
+ $ LD_PRELOAD=./liboverride_cuda_memcpy.so pytest outer_api_error.py
+

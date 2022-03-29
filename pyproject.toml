@@ -1,0 +1,6 @@
+[build-system]
+requires = ["setuptools", "wheel", "Cython", "cupy", "nlcpy>=2.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = [ "tests", ]
