@@ -31,11 +31,12 @@ a heterogeneous system with multiple types of accelerators.
 The name "OrchesPy" comes from that the library **orches**\ trates
 NumPy-like **Py**\ thon libraries for various devices.
 
-OrchesPy provides following two features:
+OrchesPy provides following three features:
 
 * "device" directive-like decorator converting N-dimension arrays
   (array_like) in arguments transparently in order to execute code on
-  a specified device, and
+  a specified device,
 * "transfer_array" function to transfer an array_like from a device
-  to another device explicitly in portable way.
-
+  to another device explicitly in portable way, and
+* "transfer_array_content" function to transfer array_like to
+  specified array_like.

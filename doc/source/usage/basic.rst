@@ -11,7 +11,7 @@ Preparation
 
 
 If you use Vector Engine (VE) on OrchesPy, setup the environment for NLCPy.
-`NLCPy: NumPy-like API accelerated with SX-Aurora TSUBASA <https://www.hpc.nec/documents/nlcpy/en/usage/basic.html>`_
+`NLCPy: NumPy-like API accelerated with SX-Aurora TSUBASA <https://sxauroratsubasa.sakura.ne.jp/documents/nlcpy/en/usage/basic.html>`_
 
 If you use CUDA GPU on OrchesPy, setup the environment for CuPy.
 `CuPy: NumPy & SciPy for GPU <https://docs.cupy.dev/en/stable/install.html>`_
@@ -113,6 +113,20 @@ An easy example of OrchesPy script is shown below:
     >>> x2 = orchespy.transfer_array(x1, VE)
     >>> type(x2)
     <class 'nlcpy.core.core.ndarray'>
+
+If there are multiple same devices and you want to specify the device, describe it as follows.
+
+.. doctest::
+
+    >>> import orchespy
+    >>> from orchespy.devicetype import VE
+    >>> import numpy as np
+    >>> x1 = np.arange(9.0).reshape((3, 3))
+    >>> x2 = orchespy.transfer_array(x1, VE(1))
+    >>> type(x2)
+    <class 'nlcpy.core.core.ndarray'>
+    >>> x2.venode.id
+    1
 
 Details of usage of decorator is described in :ref:`Decoration of function <orchespy_usage_decoration>` 
 

@@ -11,13 +11,16 @@ _cuda_path = '/usr/local/cuda'
 _cuda_include_dir = _cuda_path + '/include'
 _cuda_lib_dir = _cuda_path + '/lib64'
 
+_interdevcopy_path = '/opt/nec/interdevcopy'
+_interdevcopy_include_dir = _interdevcopy_path + '/include'
+
 ext_modules = {
     'cupy-nlcpy': [
         'orchespy.devicetype._transfer.cunlc',
     ],
 }
 include_dirs = {
-    'cupy-nlcpy': [_cuda_include_dir, _veo_include_dir, ],
+    'cupy-nlcpy': [_cuda_include_dir, _veo_include_dir, _interdevcopy_include_dir, ],
 }
 libraries = {
     'cupy-nlcpy': ['veo', 'cudart', ],

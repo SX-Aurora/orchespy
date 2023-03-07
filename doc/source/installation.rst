@@ -18,17 +18,23 @@ installed.
 
 * | `NumPy <https://www.numpy.org/>`_
 
-    - required version: v1.17, v1.18, v1.19, or v1.20
+    - required version: v1.23.2
 
-* | `NLCPy <https://www.hpc.nec/documents/nlcpy/en/>`_
+* | `NLCPy <https://sxauroratsubasa.sakura.ne.jp/documents/nlcpy/en/>`_
 
     - To run programs on VE, NLCPy and its dependencies such as veoffload are required.
-    - required version: v2.0.1
+    - required version: v2.2.0
 
 * | `CuPy <https://cupy.dev/>`_
 
     - To run programs on CUDA GPU, CuPy and its dependencies such as CUDA toolkit working with your GPU
       are required
+    - required version: v11.0.0
+
+* | `Inter-Device Copy Library <https://sxauroratsubasa.sakura.ne.jp/documents/interdevcopy/en/index.html>`_
+
+    - Necessary for GPU-VE transfer.
+    - required version: v0.1.0b1
 
 
 

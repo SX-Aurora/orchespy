@@ -1,13 +1,18 @@
 from abc import ABC, abstractmethod
+from .. import numpy as _numpy
 
 
 class Base(ABC):
     @abstractmethod
-    def get_ndarray_on_host(self, ary):
+    def can_transfer(self, obj):
         pass
 
     @abstractmethod
-    def get_ndarray_on_device(self, ary):
+    def can_transfer_to(self, obj, target):
+        pass
+
+    @abstractmethod
+    def create_ndarray_on_device(self, ary):
         pass
 
     @property
@@ -17,17 +22,20 @@ class Base(ABC):
 
     @classmethod
     @abstractmethod
-    def find_device(self, ary):
+    def get_device(self, obj):
         pass
 
     def __enter__(self):
+        _numpy.push_current_numpy(self.numpy_class)
         return self.numpy_class
 
     def __exit__(self, exc_type, exc_value, traceback):
-        pass
+        _numpy.pop_current_numpy()
 
-    def func_to_transfer_ndarray_from(self, srcdev):
+    @abstractmethod
+    def transfer_array_content(self, dst, src):
         return None
 
-    def func_to_transfer_ndarray_to(self, dstdev):
+    @abstractmethod
+    def transfer_array_content_to(self, dst, src):
         return None

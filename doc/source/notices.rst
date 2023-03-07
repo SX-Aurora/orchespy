@@ -20,7 +20,4 @@ objects including array_like in attributes are not converted.
 Limitations
 -----------
 
-The current OrchesPy supports one device for each device type.
-Even if multiple VEs and GPUs are connected, an OrchesPy program
-can use one VE and one GPU.
-In future version, multiple devices will be supported.
+None.

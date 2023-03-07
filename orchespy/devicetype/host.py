@@ -1,5 +1,4 @@
 from .base import Base
-from .. import transfer
 import numpy
 
 
@@ -27,25 +26,27 @@ class Host(Base):
 
 
     """
+    def can_transfer(self, obj):
+        return isinstance(obj, numpy.ndarray)
 
-    def get_ndarray_on_host(self, ary):
-        assert(isinstance(ary, numpy.ndarray))
-        # ary is numpy.ndarray, which is on the host.
-        return ary
+    def can_transfer_to(self, obj, target):
+        return isinstance(obj, numpy.ndarray) and type(target) == Host
 
-    def get_ndarray_on_device(self, ary):
-        assert(isinstance(ary, numpy.ndarray))
-        # ary is numpy.ndarray, which is on the host.
-        return ary
+    def create_ndarray_on_device(self, obj):
+        _order = "F" if not obj.flags.c_contiguous and obj.flags.f_contiguous else "C"
+        return numpy.empty(obj.shape, dtype=obj.dtype, order=_order)
+
+    def transfer_array_content(self, dst, src):
+        numpy.copyto(dst, src)
+
+    def transfer_array_content_to(self, dst, src):
+        numpy.copyto(dst, src)
 
     @classmethod
-    def find_device(self, ndarray):
-        assert(isinstance(ndarray, numpy.ndarray))
+    def get_device(self, ndarray):
+        assert isinstance(ndarray, numpy.ndarray)
         return Host()
 
     @property
     def numpy_class(self):
         return numpy
-
-
-transfer.register_devicetype(Host, numpy.ndarray)

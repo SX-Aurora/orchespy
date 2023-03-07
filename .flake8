@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 89
+filename = *.py,*.pyx,*.px*
+exclude =
+    build,dist,bench,.git,
+    tests,doc,examples
+ignore = W503,W504,W605,E262,E116
+per-file-ignores =
+    *.pyx,*.px*: E211,E225,E226,E227,E275,E999
+force-check = True

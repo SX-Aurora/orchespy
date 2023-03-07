@@ -50,6 +50,24 @@ def device(target, numpy_module_arg=None):
     >>>
     >>> x = create_array_on_VE()
 
+    If you have multiple identical devices, you can specify any device for the decorator.
+    Also, when operating within the device decorator function,
+    It is necessary to switch the output device in advance.
+
+    >>> from orchespy import device
+    >>> import numpy as np
+    >>> import nlcpy as vp
+    >>> @device(VE(1))
+    ... def exec_on_ve(x, y):
+    ...     return x * y
+    ...
+    >>> x = np.ones((2,2))
+    >>> y = np.ones((2,2))
+    >>> vp.venode.VE(1).use()
+    <VE node logical_id=1, physical_id=1>
+    >>> mul = exec_on_ve(x, y)
+    >>> mul.venode.id
+    1
     """
     if isinstance(target, type):
         target = target()
